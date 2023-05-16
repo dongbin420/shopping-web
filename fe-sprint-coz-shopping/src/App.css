@@ -44,6 +44,32 @@ a {
   cursor: pointer;
 }
 
+.bookmark-btn {
+  font-size: 40px;
+  color: #ededed;
+  position: relative;
+  bottom: 70px;
+  left: 290px;
+  cursor: pointer;
+}
+
+.bookmark-btn:hover {
+  color: #ffd361;
+}
+
+.bookmark-btn-modal {
+  font-size: 50px;
+  color: #ededed;
+  position: absolute;
+  bottom: 30px;
+  right: 20px;
+  cursor: pointer;
+}
+
+.bookmark-btn-modal:hover {
+  color: #ffd361;
+}
+
 /* .bubble::before {
   content: "";
   position: absolute;
