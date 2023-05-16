@@ -28,13 +28,13 @@ function App() {
           handleOpenBubble={handleOpenBubble}
           handleCloseBubble={handleCloseBubble}
         />
-        <div className="routes-container" onClick={handleCloseBubble}>
-          <Routes>
-            <Route path="/" element={<MainPage />} />
-            <Route path="/product/list " element={<ProductPage />} />
-            <Route path="/bookmark " element={<BookmarkPage />} />
-          </Routes>
-        </div>
+
+        <Routes>
+          <Route path="/" element={<MainPage />} />
+          <Route path="/product/list " element={<ProductPage />} />
+          <Route path="/bookmark " element={<BookmarkPage />} />
+        </Routes>
+
         <Footer />
       </Router>
     </>
