@@ -16,13 +16,20 @@ a {
 }
 
 #root {
-  height: 100vh;
   display: flex;
   flex-direction: column;
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
 }
 
 .routes-container {
-  flex-grow: 1;
+  /* flex-grow: 1; */
+  width: 100%;
+
+  height: calc(100vh - 4.5rem);
+  display: flex;
+  flex-direction: column;
 }
 
 .bubble-text1 {
