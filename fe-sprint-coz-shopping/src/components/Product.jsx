@@ -19,6 +19,13 @@ export const ProductImg = styled.img`
   cursor: pointer;
 `;
 
+export const ModalImg = styled.img`
+  cursor: auto;
+  width: 450px;
+  height: 350px;
+  border-radius: 30px;
+`;
+
 export const Modal = styled.div`
   position: fixed;
   top: 0;
@@ -47,7 +54,6 @@ export const CloseButton = styled.button`
   background-color: transparent;
   border: none;
   cursor: pointer;
-  z-index: 2;
 
   &::before,
   &::after {
@@ -133,7 +139,20 @@ const Product = (props) => {
       <ProductContainer>
         <ProductImg onClick={openModal} src={img}></ProductImg>
 
-        <FontAwesomeIcon className="bookmark-btn" icon={faStar} />
+        {props.productInfo.isBookmarked ? (
+          <FontAwesomeIcon
+            className="bookmark-btn"
+            icon={faStar}
+            onClick={() => props.addBookmark(props.productInfo)}
+            style={{ color: "#ffd361" }}
+          />
+        ) : (
+          <FontAwesomeIcon
+            className="bookmark-btn"
+            icon={faStar}
+            onClick={() => props.addBookmark(props.productInfo)}
+          />
+        )}
 
         <ProductTextWrapper>
           <ProductText1>{title}</ProductText1>
@@ -147,12 +166,22 @@ const Product = (props) => {
       {isModalOpen && (
         <Modal onClick={closeModal}>
           <ModalContent onClick={(e) => e.stopPropagation()}>
-            <ProductImg
-              src={img}
-              style={{ cursor: "auto", width: "450px", height: "350px" }}
-            />
+            <ModalImg src={img} />
             <CloseButton onClick={closeModal}></CloseButton>
-            <FontAwesomeIcon className="bookmark-btn-modal" icon={faStar} />
+            {props.productInfo.isBookmarked ? (
+              <FontAwesomeIcon
+                className="bookmark-btn-modal"
+                icon={faStar}
+                onClick={() => props.addBookmark(props.productInfo)}
+                style={{ color: "#ffd361" }}
+              />
+            ) : (
+              <FontAwesomeIcon
+                className="bookmark-btn-modal"
+                icon={faStar}
+                onClick={() => props.addBookmark(props.productInfo)}
+              />
+            )}
           </ModalContent>
         </Modal>
       )}
@@ -161,7 +190,20 @@ const Product = (props) => {
     <>
       <ProductContainer>
         <ProductImg onClick={openModal} src={img}></ProductImg>
-        <FontAwesomeIcon className="bookmark-btn" icon={faStar} />
+        {props.productInfo.isBookmarked ? (
+          <FontAwesomeIcon
+            className="bookmark-btn"
+            icon={faStar}
+            onClick={() => props.addBookmark(props.productInfo)}
+            style={{ color: "#ffd361" }}
+          />
+        ) : (
+          <FontAwesomeIcon
+            className="bookmark-btn"
+            icon={faStar}
+            onClick={() => props.addBookmark(props.productInfo)}
+          />
+        )}
         <ProductTextWrapper>
           <ProductText1>{isCategory ? "#" + title : title}</ProductText1>
           <ProductText2 style={{ color: "#452cdd", fontWeight: "bold" }}>
@@ -178,13 +220,23 @@ const Product = (props) => {
       {isModalOpen && (
         <Modal onClick={closeModal}>
           <ModalContent onClick={(e) => e.stopPropagation()}>
-            <ProductImg
-              src={img}
-              style={{ cursor: "auto", width: "450px", height: "350px" }}
-            />
+            <ModalImg src={img} />
 
             <CloseButton onClick={closeModal}></CloseButton>
-            <FontAwesomeIcon className="bookmark-btn-modal" icon={faStar} />
+            {props.productInfo.isBookmarked ? (
+              <FontAwesomeIcon
+                className="bookmark-btn-modal"
+                icon={faStar}
+                onClick={() => props.addBookmark(props.productInfo)}
+                style={{ color: "#ffd361" }}
+              />
+            ) : (
+              <FontAwesomeIcon
+                className="bookmark-btn-modal"
+                icon={faStar}
+                onClick={() => props.addBookmark(props.productInfo)}
+              />
+            )}
           </ModalContent>
         </Modal>
       )}

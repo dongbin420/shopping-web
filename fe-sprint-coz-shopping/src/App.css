@@ -70,6 +70,10 @@ a {
   color: #ffd361;
 }
 
+.sortby-text {
+  text-align: center;
+}
+
 /* .bubble::before {
   content: "";
   position: absolute;

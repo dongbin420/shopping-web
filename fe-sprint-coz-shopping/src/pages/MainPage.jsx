@@ -1,6 +1,5 @@
-import React, { useState, useEffect } from "react";
 import styled from "styled-components";
-import axios from "axios";
+
 import Product from "../components/Product";
 
 export const ProductListContainer = styled.div`
@@ -47,33 +46,19 @@ export const BookmarkList = styled.div`
   flex-grow: 1;
 `;
 
-const MainPage = () => {
-  const [ProductInfo, setProductInfo] = useState(null);
-
-  const getProducts = () => {
-    return axios
-      .get("http://cozshopping.codestates-seb.link/api/v1/products?count=4")
-      .then((res) => {
-        setProductInfo(res.data);
-      })
-      .catch((err) => {
-        console.log(err.response.data);
-      });
-  };
-
-  useEffect(() => {
-    getProducts();
-  }, []);
-
-  console.log(ProductInfo);
-
+const MainPage = ({ productInfo, addBookmark }) => {
   return (
     <>
       <ProductListContainer>
         <ProductListText>상품 리스트</ProductListText>
         <ProductList>
-          {ProductInfo &&
-            ProductInfo.map((ele) => {
+          {productInfo &&
+            productInfo.map((ele) => {
+              let updatedProductInfo = ele;
+              if (ele.isBookmarked === undefined) {
+                updatedProductInfo = { ...ele, isBookmarked: false };
+              }
+
               return (
                 <Product
                   key={ele.id}
@@ -86,6 +71,8 @@ const MainPage = () => {
                   brandName={ele.brand_name}
                   follower={ele.follower}
                   subTitle={ele.sub_title}
+                  addBookmark={addBookmark}
+                  productInfo={updatedProductInfo}
                 />
               );
             })}
