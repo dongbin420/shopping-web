@@ -33,20 +33,29 @@ export const BookmarkListContainer = styled.div`
   /* flex-grow: 1; */
   display: flex;
   flex-direction: column;
+  margin-left: 30px;
 `;
 
 export const BookmarkListText = styled.div`
   margin-top: 1.5rem;
-  margin-left: 8rem;
+  margin-left: 6rem;
   font-weight: bold;
   font-size: 1.5em;
 `;
 
 export const BookmarkList = styled.div`
-  flex-grow: 1;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  margin-top: 30px;
+
+  @media (max-width: 1450px) {
+    flex-wrap: wrap;
+    justify-content: flex-start;
+  }
 `;
 
-const MainPage = ({ productInfo, addBookmark }) => {
+const MainPage = ({ productInfo, addBookmark, filteredBookmarks }) => {
   return (
     <>
       <ProductListContainer>
@@ -80,7 +89,27 @@ const MainPage = ({ productInfo, addBookmark }) => {
       </ProductListContainer>
       <BookmarkListContainer>
         <BookmarkListText>북마크 리스트</BookmarkListText>
-        <BookmarkList></BookmarkList>
+        <BookmarkList>
+          {filteredBookmarks &&
+            filteredBookmarks.map((filtered) => {
+              return (
+                <Product
+                  key={filtered.id}
+                  discount={filtered.discountPercentage}
+                  img={filtered.image_url}
+                  price={filtered.price}
+                  title={filtered.title}
+                  type={filtered.type}
+                  brandImg={filtered.brand_image_url}
+                  brandName={filtered.brand_name}
+                  follower={filtered.follower}
+                  subTitle={filtered.sub_title}
+                  addBookmark={addBookmark}
+                  productInfo={filtered}
+                />
+              );
+            })}
+        </BookmarkList>
       </BookmarkListContainer>
     </>
   );
