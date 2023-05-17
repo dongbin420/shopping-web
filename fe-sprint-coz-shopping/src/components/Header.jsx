@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import logo from "../../img/로고.svg";
+import logo from "../assets/img/logo.svg";
 import { Link } from "react-router-dom";
 import { useState } from "react";
 
