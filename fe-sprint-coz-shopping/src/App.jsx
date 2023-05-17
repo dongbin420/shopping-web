@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import axios from "axios";
 import Footer from "./components/Footer";
 import Header from "./components/Header";
+import NotificationCenter from "./components/NotificationCenter";
 import MainPage from "./pages/Mainpage";
 import ProductPage from "./pages/ProductPage";
 import BookmarkPage from "./pages/BookmarkPage";
@@ -101,6 +102,8 @@ function App() {
     });
   }
 
+  const filteredBookmarks = bookmarks.slice(0, 4);
+
   return (
     <>
       <Router>
@@ -117,6 +120,7 @@ function App() {
               <MainPage
                 productInfo={updatedProductByBookmark}
                 addBookmark={addBookmark}
+                filteredBookmarks={filteredBookmarks}
               />
             }
           />
@@ -128,6 +132,7 @@ function App() {
             }
           />
         </Routes>
+        <NotificationCenter />
 
         <Footer />
       </Router>
