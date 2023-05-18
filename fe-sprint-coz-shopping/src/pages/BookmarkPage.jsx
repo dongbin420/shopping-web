@@ -7,7 +7,7 @@ import category from "../assets/img/category.svg";
 import event from "../assets/img/event.svg";
 import brand from "../assets/img/brand.svg";
 
-const BookmarkPage = ({ bookmarks, addBookmark }) => {
+const BookmarkPage = ({ bookmarks, addBookmark, showToast }) => {
   console.log(bookmarks);
 
   const SortByContainer = styled.div`
@@ -83,6 +83,7 @@ const BookmarkPage = ({ bookmarks, addBookmark }) => {
                 subTitle={bookmark.sub_title}
                 addBookmark={addBookmark}
                 productInfo={bookmark}
+                showToast={showToast}
               />
             );
           })}

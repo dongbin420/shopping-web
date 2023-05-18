@@ -55,7 +55,12 @@ export const BookmarkList = styled.div`
   }
 `;
 
-const MainPage = ({ productInfo, addBookmark, filteredBookmarks }) => {
+const MainPage = ({
+  productInfo,
+  addBookmark,
+  filteredBookmarks,
+  showToast,
+}) => {
   return (
     <>
       <ProductListContainer>
@@ -82,6 +87,7 @@ const MainPage = ({ productInfo, addBookmark, filteredBookmarks }) => {
                   subTitle={ele.sub_title}
                   addBookmark={addBookmark}
                   productInfo={updatedProductInfo}
+                  showToast={showToast}
                 />
               );
             })}
@@ -106,6 +112,7 @@ const MainPage = ({ productInfo, addBookmark, filteredBookmarks }) => {
                   subTitle={filtered.sub_title}
                   addBookmark={addBookmark}
                   productInfo={filtered}
+                  showToast={showToast}
                 />
               );
             })}
