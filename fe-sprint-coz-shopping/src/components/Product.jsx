@@ -143,14 +143,20 @@ const Product = (props) => {
           <FontAwesomeIcon
             className="bookmark-btn"
             icon={faStar}
-            onClick={() => props.addBookmark(props.productInfo)}
+            onClick={() => {
+              props.addBookmark(props.productInfo);
+              props.showToast("상품이 북마크에서 제거되었습니다.");
+            }}
             style={{ color: "#ffd361" }}
           />
         ) : (
           <FontAwesomeIcon
             className="bookmark-btn"
             icon={faStar}
-            onClick={() => props.addBookmark(props.productInfo)}
+            onClick={() => {
+              props.addBookmark(props.productInfo);
+              props.showToast("상품이 북마크에 추가되었습니다.");
+            }}
           />
         )}
 
@@ -172,14 +178,20 @@ const Product = (props) => {
               <FontAwesomeIcon
                 className="bookmark-btn-modal"
                 icon={faStar}
-                onClick={() => props.addBookmark(props.productInfo)}
+                onClick={() => {
+                  props.addBookmark(props.productInfo);
+                  props.showToast("상품이 북마크에서 제거되었습니다.");
+                }}
                 style={{ color: "#ffd361" }}
               />
             ) : (
               <FontAwesomeIcon
                 className="bookmark-btn-modal"
                 icon={faStar}
-                onClick={() => props.addBookmark(props.productInfo)}
+                onClick={() => {
+                  props.addBookmark(props.productInfo);
+                  props.showToast("상품이 북마크에 추가되었습니다.");
+                }}
               />
             )}
           </ModalContent>
@@ -194,14 +206,20 @@ const Product = (props) => {
           <FontAwesomeIcon
             className="bookmark-btn"
             icon={faStar}
-            onClick={() => props.addBookmark(props.productInfo)}
+            onClick={() => {
+              props.addBookmark(props.productInfo);
+              props.showToast("상품이 북마크에서 제거되었습니다.");
+            }}
             style={{ color: "#ffd361" }}
           />
         ) : (
           <FontAwesomeIcon
             className="bookmark-btn"
             icon={faStar}
-            onClick={() => props.addBookmark(props.productInfo)}
+            onClick={() => {
+              props.addBookmark(props.productInfo);
+              props.showToast("상품이 북마크에 추가되었습니다.");
+            }}
           />
         )}
         <ProductTextWrapper>
@@ -227,14 +245,20 @@ const Product = (props) => {
               <FontAwesomeIcon
                 className="bookmark-btn-modal"
                 icon={faStar}
-                onClick={() => props.addBookmark(props.productInfo)}
+                onClick={() => {
+                  props.addBookmark(props.productInfo);
+                  props.showToast("상품이 북마크에서 제거되었습니다.");
+                }}
                 style={{ color: "#ffd361" }}
               />
             ) : (
               <FontAwesomeIcon
                 className="bookmark-btn-modal"
                 icon={faStar}
-                onClick={() => props.addBookmark(props.productInfo)}
+                onClick={() => {
+                  props.addBookmark(props.productInfo);
+                  props.showToast("상품이 북마크에 추가되었습니다.");
+                }}
               />
             )}
           </ModalContent>

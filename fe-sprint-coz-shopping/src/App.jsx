@@ -18,6 +18,16 @@ function App() {
   //   return storedBookmarks ? JSON.parse(storedBookmarks) : [];
   // });
 
+  const [toasts, setToasts] = useState([]);
+
+  const showToast = (message) => {
+    setToasts((prevToasts) => [...prevToasts, message]);
+
+    setTimeout(() => {
+      setToasts((prevToasts) => prevToasts.slice(1));
+    }, 4000);
+  };
+
   const handleOpenBubble = () => {
     setIsBubbleOpen(true);
   };
@@ -121,18 +131,26 @@ function App() {
                 productInfo={updatedProductByBookmark}
                 addBookmark={addBookmark}
                 filteredBookmarks={filteredBookmarks}
+                showToast={showToast}
               />
             }
           />
-          <Route path="/product/list " element={<ProductPage />} />
+          <Route
+            path="/product/list "
+            element={<ProductPage showToast={showToast} />}
+          />
           <Route
             path="/bookmark"
             element={
-              <BookmarkPage bookmarks={bookmarks} addBookmark={addBookmark} />
+              <BookmarkPage
+                bookmarks={bookmarks}
+                addBookmark={addBookmark}
+                showToast={showToast}
+              />
             }
           />
         </Routes>
-        <NotificationCenter />
+        <NotificationCenter toasts={toasts} />
 
         <Footer />
       </Router>
