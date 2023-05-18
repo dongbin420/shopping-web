@@ -136,8 +136,14 @@ function App() {
             }
           />
           <Route
-            path="/product/list "
-            element={<ProductPage showToast={showToast} />}
+            path="/product/list"
+            element={
+              <ProductPage
+                showToast={showToast}
+                bookmarks={bookmarks}
+                addBookmark={addBookmark}
+              />
+            }
           />
           <Route
             path="/bookmark"
