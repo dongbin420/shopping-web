@@ -1,5 +1,5 @@
 import React from "react";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef, useCallback } from "react";
 import styled from "styled-components";
 import axios from "axios";
 
@@ -45,6 +45,8 @@ const AllProductsConatiner = styled.div`
 const ProductPage = ({ showToast, bookmarks, addBookmark }) => {
   const [allProducts, setAllProducts] = useState(null);
   const [type, setType] = useState("all");
+  const [visibleProductCount, setVisibleProductCount] = useState(0);
+  const containerRef = useRef(null);
 
   const getAllProducts = () => {
     return axios
@@ -60,6 +62,34 @@ const ProductPage = ({ showToast, bookmarks, addBookmark }) => {
   useEffect(() => {
     getAllProducts();
   }, []);
+
+  const handleIntersection = useCallback((entries) => {
+    const [entry] = entries;
+    if (entry.isIntersecting) {
+      setTimeout(() => {
+        setVisibleProductCount((prevCount) => prevCount + 15);
+      }, 300);
+    }
+  }, []);
+
+  useEffect(() => {
+    const options = {
+      root: null,
+      rootMargin: "20px",
+      threshold: 1,
+    };
+
+    const observer = new IntersectionObserver(handleIntersection, options);
+    if (containerRef.current) {
+      observer.observe(containerRef.current);
+    }
+
+    return () => {
+      if (containerRef.current) {
+        observer.unobserve(containerRef.current);
+      }
+    };
+  }, [handleIntersection]);
 
   let updatedAllProductsByBookmark = allProducts;
 
@@ -98,6 +128,9 @@ const ProductPage = ({ showToast, bookmarks, addBookmark }) => {
     });
   }
 
+  const visibleProducts = sortByItems
+    ? sortByItems.slice(0, visibleProductCount)
+    : [];
   return (
     <>
       <SortByContainer>
@@ -123,8 +156,8 @@ const ProductPage = ({ showToast, bookmarks, addBookmark }) => {
         </SortBy>
       </SortByContainer>
       <AllProductsConatiner>
-        {sortByItems &&
-          sortByItems.map((item) => {
+        {visibleProducts &&
+          visibleProducts.map((item) => {
             return (
               <Product
                 key={item.id}
@@ -144,6 +177,7 @@ const ProductPage = ({ showToast, bookmarks, addBookmark }) => {
             );
           })}
       </AllProductsConatiner>
+      <div ref={containerRef}></div>
     </>
   );
 };
