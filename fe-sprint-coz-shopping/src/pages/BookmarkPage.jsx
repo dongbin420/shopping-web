@@ -1,5 +1,5 @@
 import React from "react";
-import { useState } from "react";
+import { useState, useEffect, useRef, useCallback } from "react";
 import styled from "styled-components";
 import Product from "../components/Product";
 import all from "../assets/img/all.svg";
@@ -42,6 +42,36 @@ const BookmarkConatiner = styled.div`
 
 const BookmarkPage = ({ bookmarks, addBookmark, showToast }) => {
   const [type, setType] = useState("all");
+  const [visibleProductCount, setVisibleProductCount] = useState(0);
+  const containerRef = useRef(null);
+
+  const handleIntersection = useCallback((entries) => {
+    const [entry] = entries;
+    if (entry.isIntersecting) {
+      setTimeout(() => {
+        setVisibleProductCount((prevCount) => prevCount + 15);
+      }, 300);
+    }
+  }, []);
+
+  useEffect(() => {
+    const options = {
+      root: null,
+      rootMargin: "20px",
+      threshold: 1,
+    };
+
+    const observer = new IntersectionObserver(handleIntersection, options);
+    if (containerRef.current) {
+      observer.observe(containerRef.current);
+    }
+
+    return () => {
+      if (containerRef.current) {
+        observer.unobserve(containerRef.current);
+      }
+    };
+  }, [handleIntersection]);
 
   const sortByHandler = (type) => {
     setType(type);
@@ -66,6 +96,10 @@ const BookmarkPage = ({ bookmarks, addBookmark, showToast }) => {
       return item.type === "Brand";
     });
   }
+
+  const visibleProducts = sortByItems
+    ? sortByItems.slice(0, visibleProductCount)
+    : [];
 
   return (
     <>
@@ -92,8 +126,8 @@ const BookmarkPage = ({ bookmarks, addBookmark, showToast }) => {
         </SortBy>
       </SortByContainer>
       <BookmarkConatiner>
-        {sortByItems &&
-          sortByItems.map((item) => {
+        {visibleProducts &&
+          visibleProducts.map((item) => {
             return (
               <Product
                 key={item.id}
@@ -113,6 +147,7 @@ const BookmarkPage = ({ bookmarks, addBookmark, showToast }) => {
             );
           })}
       </BookmarkConatiner>
+      <div ref={containerRef}></div>
     </>
   );
 };
