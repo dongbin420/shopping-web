@@ -1,7 +1,8 @@
 import { useState, useEffect } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import axios from "axios";
-import Footer from "./components/Footer";
+// import Footer from "./components/Footer";
+import Footer from "./common/components/Footer";
 import Header from "./components/Header";
 import NotificationCenter from "./components/NotificationCenter";
 import MainPage from "./pages/Mainpage";
@@ -19,6 +20,9 @@ function App() {
   // });
 
   const [toasts, setToasts] = useState([]);
+
+  const label = "개인정보 처리방침 | 이용 약관";
+  const copyright = "All rights reserved @ Codestates";
 
   const showToast = (message) => {
     setToasts((prevToasts) => [...prevToasts, message]);
@@ -158,7 +162,7 @@ function App() {
         </Routes>
         <NotificationCenter toasts={toasts} />
 
-        <Footer />
+        <Footer label={label} copyright={copyright} />
       </Router>
     </>
   );
