@@ -4,7 +4,7 @@ import axios from "axios";
 import Footer from "./components/Footer";
 import Header from "./components/Header";
 import NotificationCenter from "./components/NotificationCenter";
-import MainPage from "./pages/Mainpage";
+import MainPage from "./pages/MainPage";
 import ProductPage from "./pages/ProductPage";
 import BookmarkPage from "./pages/BookmarkPage";
 import "./App.css";
