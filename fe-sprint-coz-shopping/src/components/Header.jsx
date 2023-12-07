@@ -31,7 +31,7 @@ export const HeaderImg = styled.img`
   cursor: pointer;
 `;
 
-export const HeaderLeftText = styled.span`
+export const HeaderLeftText = styled.p`
   margin-left: 1%;
   font-size: 1.7em;
   font-weight: 700;
@@ -83,14 +83,6 @@ export const Bubble = styled.div`
 export const BubbleText = styled.div`
   margin-left: 5px;
 `;
-
-export const Logo = styled.span`
-  margin-right: 1rem;
-  padding: 0.6rem 1.3rem;
-  background-color: #ffea70;
-  border-radius: 100%;
-`
-
 const Header = ({ isBubbleOpen, handleOpenBubble, handleCloseBubble }) => {
   //   const [isBubbleOpen, setIsBubbleOpen] = useState(false);
 
@@ -106,10 +98,9 @@ const Header = ({ isBubbleOpen, handleOpenBubble, handleCloseBubble }) => {
     <HeaderContainer onClick={handleCloseBubble}>
       <HeaderLeft>
         <Link to="/">
-        <Logo></Logo>
-        {/* <HeaderLeftText>Shopping</HeaderLeftText> */}
+          <HeaderImg src={logo}></HeaderImg>
         </Link>
-        
+        <HeaderLeftText>COZ Shopping</HeaderLeftText>
       </HeaderLeft>
       <HeaderRight>
         <Hamburger onClick={handleOpenBubble} className="hamburger">
